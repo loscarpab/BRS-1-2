@@ -1,0 +1,78 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Proyecto 1.2</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="2"
+                  title="Proyecto 1.2"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="1">
+        <p>En este tutorial vamos a aprender a como bastionar el arranque de un sistema de Debian <img alt="grub" src="img\\1c2a04a20e1f1af.webp"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arranque con contraseña" duration="0">
+        <p>Duration 00:02:00</p>
+<p>En este paso vamos a ver como proteger el arranque con una contraseña. Para ello desde una terminal ejecutamos como usuario root o con sudo el siguiente comando <code>sudo nano /etc/grub.d/40_custom</code><img alt="comandopasswd" src="img\\9f1a6bfab75e8d75.png"> Una vez abierto el archivo ponemos al final del mismo este codigo, siendo contraseña la que queremos establecer:</p>
+<pre><code>set superusers=&#34;root&#34;
+password root contraseña
+</code></pre>
+<p class="image-container"><img alt="40_custom" src="img\\a3f95f7da7ca1d25.png"></p>
+<p>Para actualizar los cambios ejecutamos <code>sudo update-grub</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Cifrado de contraseña de arranque" duration="0">
+        <p>Duration 00:02:00</p>
+<p>Para cifrar la contraseña ponemos este comando para generarla <code>sudo grub-mkpasswd-pbkdf2</code></p>
+<p class="image-container"><img alt="40_custom" src="img\\741ad3a3565c7454.png"></p>
+<p>Copiamos la respuesta y la ponemos en el mismo archivo de antes, sustituyendo password por password_pbkdf2, deberia de quedar así:</p>
+<p class="image-container"><img alt="40_custom" src="img\\32e75754edaa2847.png"></p>
+<p>Para actualizar los cambios ejecutamos <code>sudo update-grub</code></p>
+<p>Para editar los permisos del archivo para que solo lo pueda editar root, introducimos el siguiente comando <code>sudo chmod 700 /etc/grub.d/40_custom</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ocultar menú de arranque" duration="0">
+        <p>Duration 00:02:00</p>
+<p>Abrimos el archivo /etc/default/grub con el siguiente comando <code>nano /etc/default/grub</code> y cambiamos GRUB_TIMEOUT=5 a GRUB_TIMEOUT=0.</p>
+<p class="image-container"><img alt="40_custom" src="img\\d610e206be82d944.png"></p>
+<p>Y solo faltaría volver a actualizar el grub con <code>sudo update-grub</code></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
